@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Neo | Game Developer Portfolio</title>
+  <title>NeoMP3 | Minecraft Java Portfolio</title>
 
-  <!-- Google Font -->
+  <!-- Font -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
 
   <style>
@@ -31,7 +31,7 @@
       overflow-x: hidden;
     }
 
-    /* ===== Scrollbar ===== */
+    /* Scrollbar */
     ::-webkit-scrollbar {
       width: 8px;
     }
@@ -40,7 +40,7 @@
       border-radius: 10px;
     }
 
-    /* ===== Animations ===== */
+    /* Animations */
     .fade-up {
       opacity: 0;
       transform: translateY(30px);
@@ -51,7 +51,7 @@
       transform: translateY(0);
     }
 
-    /* ===== Header ===== */
+    /* HERO */
     header {
       min-height: 100vh;
       display: flex;
@@ -80,7 +80,22 @@
       font-size: 1.1rem;
     }
 
-    /* ===== Sections ===== */
+    .profile-img {
+      width: 170px;
+      height: 170px;
+      object-fit: cover;
+      border-radius: 50%;
+      margin-bottom: 30px;
+      border: 3px solid var(--accent);
+      box-shadow: 0 0 45px rgba(108, 242, 194, 0.3);
+      transition: transform 0.4s ease;
+    }
+
+    .profile-img:hover {
+      transform: scale(1.05);
+    }
+
+    /* Sections */
     section {
       padding: 100px 10%;
     }
@@ -96,7 +111,7 @@
       margin-bottom: 50px;
     }
 
-    /* ===== Skills ===== */
+    /* Skills */
     .skills {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -125,7 +140,7 @@
       font-size: 0.95rem;
     }
 
-    /* ===== Projects ===== */
+    /* Projects */
     .projects {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -162,7 +177,7 @@
       font-size: 0.95rem;
     }
 
-    /* ===== Footer ===== */
+    /* Footer */
     footer {
       text-align: center;
       padding: 40px;
@@ -176,11 +191,12 @@
   <!-- HERO -->
   <header>
     <div class="fade-up">
-      <h1>Hello, I'm <span>Neo</span></h1>
+      <img class="profile-img" src="assets/images/ppicture.png" alt="NeoMP3 profile picture">
+
+      <h1>Hello, I'm <span>NeoMP3</span></h1>
       <p>
-        I'm a beginner game developer, programmer, 3D modeler and animator,
-        focused mainly on Minecraft Java. I love learning, experimenting and
-        creating immersive experiences.
+        I'm a Minecraft Java programmer, creating mods, datapacks, custom entities
+        and animations. I focus on experimenting and learning to enhance Minecraft gameplay.
       </p>
     </div>
   </header>
@@ -189,9 +205,9 @@
   <section>
     <h2 class="section-title fade-up">About Me</h2>
     <p class="section-desc fade-up">
-      I'm passionate about game development and creative technology.
-      I enjoy mixing programming, modeling and design to bring ideas to life.
-      Even though I'm still learning, I constantly push myself to improve.
+      I'm NeoMP3, a programmer and Minecraft enthusiast. I enjoy coding mods,
+      datapacks, entity animations and custom systems to create unique experiences
+      within Minecraft Java.
     </p>
   </section>
 
@@ -201,23 +217,23 @@
 
     <div class="skills">
       <div class="skill-card fade-up">
-        <h3>Programming</h3>
-        <p>Java, Datapacks, basic modding and logic systems for Minecraft Java.</p>
+        <h3>Java Programming</h3>
+        <p>Developing mods, plugins and custom mechanics for Minecraft Java.</p>
+      </div>
+
+      <div class="skill-card fade-up">
+        <h3>Datapacks & Commands</h3>
+        <p>Custom datapacks, command blocks, logic systems and triggers.</p>
       </div>
 
       <div class="skill-card fade-up">
         <h3>3D Modeling & Animation</h3>
-        <p>Entity models, block models and animations for Minecraft.</p>
+        <p>Creating and animating custom entities and blocks inside Minecraft.</p>
       </div>
 
       <div class="skill-card fade-up">
-        <h3>Game Design</h3>
-        <p>Gameplay ideas, mechanics, atmosphere and player experience.</p>
-      </div>
-
-      <div class="skill-card fade-up">
-        <h3>Graphic Design</h3>
-        <p>Textures, UI elements and visual identity for projects.</p>
+        <h3>Texture & Design</h3>
+        <p>Custom textures and visual tweaks for entities and blocks.</p>
       </div>
     </div>
   </section>
@@ -226,28 +242,28 @@
   <section>
     <h2 class="section-title fade-up">Projects</h2>
     <p class="section-desc fade-up">
-      Some of my personal and experimental projects.
+      Some of my Minecraft Java projects.
     </p>
 
     <div class="projects">
       <div class="project-card fade-up">
-        <h3>Minecraft Datapack</h3>
+        <h3>Custom Datapack</h3>
         <p>
-          Custom entities with animations, texture changes and interactive mechanics.
+          Datapack with interactive entities, animations and custom mechanics.
         </p>
       </div>
 
       <div class="project-card fade-up">
-        <h3>Horror Concept</h3>
+        <h3>Entity Animations</h3>
         <p>
-          Psychological horror ideas and cinematic game concepts.
+          Animated custom mobs and bosses with unique behaviors inside Minecraft.
         </p>
       </div>
 
       <div class="project-card fade-up">
-        <h3>Experimental Systems</h3>
+        <h3>Texture Tweaks</h3>
         <p>
-          Testing commands, logic and creative mechanics inside Minecraft.
+          Modified block and item textures to enhance the Minecraft experience.
         </p>
       </div>
     </div>
@@ -255,10 +271,10 @@
 
   <!-- FOOTER -->
   <footer>
-    © 2026 Neo — Game Developer Portfolio
+    © 2026 NeoMP3 — Minecraft Java Portfolio
   </footer>
 
-  <!-- JS Animations -->
+  <!-- JS -->
   <script>
     const observer = new IntersectionObserver(entries => {
       entries.forEach(entry => {
