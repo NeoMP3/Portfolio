@@ -1,309 +1,397 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>NeoMP3 Portfolio</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NeoMP3 Portfolio</title>
+<link rel="icon" href="assets/images/ppicture.png">
 
-  <!-- Favicon -->
-  <link rel="icon" type="image/png" href="assets/images/ppicture.png">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
 
-  <!-- Fuente -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0e0e11;
+  --bg-soft:#16161c;
+  --text:#eaeaf0;
+  --muted:#a3a4c0;
+  --accent:#8b5cf6;
+}
 
-  <style>
-    :root {
-      --bg: #0e0e11;
-      --bg-soft: #16161c;
-      --text: #eaeaf0;
-      --muted: #9fa0b5;
-      --accent: #6cf2c2;
-      --accent-soft: rgba(108, 242, 194, 0.15);
-      --error: #ff4d4d;
-    }
+/* ---------- GLOBAL ---------- */
+*{margin:0;padding:0;box-sizing:border-box;font-family:Inter,sans-serif}
 
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Inter', sans-serif;
-    }
+body{
+  background:var(--bg);
+  color:var(--text);
+  overflow-x:hidden;
+  position:relative;
+  min-height:100vh;
+}
 
-    body {
-      background: var(--bg);
-      color: var(--text);
-    }
+/* ---------- BACKGROUND IMAGE ---------- */
+body::before{
+  content:"";
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:50%; /* mostrar solo mitad superior */
+  background:url('assets/images/fondo1.png') center top no-repeat;
+  background-size:cover;
+  filter:blur(8px) brightness(0.5);
+  z-index:-1;
+}
 
-    header {
-      min-height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 50px;
-      padding: 40px 10%;
-      flex-wrap: wrap;
-      background: radial-gradient(circle at top, #1b1b22, transparent);
-    }
+/* ---------- MAIN ---------- */
+main{
+  min-height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  padding:40px;
+}
 
-    .hero-left {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-      max-width: 400px;
-    }
+/* ---------- VIEWS ---------- */
+.view{
+  width:100%;
+  max-width:1100px;
+  display:none;
+}
 
-    .profile-img {
-      width: 170px;
-      height: 170px;
-      object-fit: cover;
-      border-radius: 50%;
-      margin-bottom: 30px;
-      border: 3px solid var(--accent);
-      box-shadow: 0 0 45px rgba(108, 242, 194, 0.3);
-      transition: transform 0.4s ease;
-    }
+.view.active{
+  display:block;
+  animation:viewIn .6s cubic-bezier(.22,.61,.36,1);
+}
 
-    .profile-img:hover {
-      transform: scale(1.05);
-    }
+@keyframes viewIn{
+  from{opacity:0;transform:scale(.94)}
+  to{opacity:1;transform:scale(1)}
+}
 
-    header h1 {
-      font-size: clamp(2rem, 6vw, 3rem);
-      font-weight: 800;
-      letter-spacing: -1px;
-      margin-bottom: 15px;
-    }
+/* ---------- HOME ---------- */
+.home{
+  display:flex;
+  gap:50px;
+  align-items:center;
+  flex-wrap:wrap;
+}
 
-    header h1 span {
-      color: var(--accent);
-    }
+.home img{
+  width:180px;
+  border-radius:50%;
+  border:3px solid var(--accent);
+}
 
-    header p {
-      color: var(--muted);
-      font-size: 1.1rem;
-      transition: all 0.3s ease;
-    }
+.home h1{font-size:2.4rem}
+.home span{color:var(--accent)}
 
-    .hero-right {
-      max-width: 350px;
-    }
+.home p{
+  color:var(--muted);
+  max-width:420px;
+  margin-top:10px;
+}
 
-    .card {
-      background: var(--bg-soft);
-      border-radius: 18px;
-      padding: 30px;
-      width: 100%;
-      transition: 0.3s ease;
-      border: 2px solid transparent;
-    }
+.buttons{
+  margin-top:22px;
+  display:flex;
+  gap:14px;
+}
 
-    .card:hover {
-      border-color: var(--accent);
-      transform: translateY(-6px);
-    }
+button{
+  padding:10px 18px;
+  border:none;
+  border-radius:8px;
+  font-weight:600;
+  cursor:pointer;
+  transition:.35s cubic-bezier(.22,.61,.36,1);
+}
 
-    .card h3 {
-      margin-bottom: 15px;
-      font-size: 1.4rem;
-      transition: all 0.3s ease;
-    }
+button:hover{transform:scale(1.05)}
 
-    .card p {
-      color: var(--muted);
-      font-size: 0.95rem;
-      line-height: 1.5;
-      margin-bottom: 20px;
-      transition: all 0.3s ease;
-    }
+.primary{background:var(--accent);color:#fff}
+.secondary{background:#3a3a45;color:#fff}
 
-    .buttons {
-      display: flex;
-      gap: 15px;
-      flex-wrap: wrap;
-    }
+/* ---------- SKILLS ---------- */
+.skill-card{
+  background:var(--bg-soft);
+  border-radius:18px;
+  padding:32px;
+  display:flex;
+  gap:30px;
+  align-items:center;
+  flex-wrap:wrap;
+}
 
-    .buttons button {
-      padding: 10px 18px;
-      border: none;
-      border-radius: 8px;
-      font-weight: 600;
-      cursor: pointer;
-      transition: 0.3s ease;
-    }
+.skill-card img{
+  width:300px;
+  border-radius:12px;
+}
 
-    .toggle-projects {
-      background: var(--accent);
-      color: var(--bg);
-    }
+.skill-card p{
+  color:var(--muted);
+  max-width:420px;
+}
 
-    .toggle-projects:hover {
-      background: rgba(108,242,194,0.8);
-    }
+/* ---------- GALLERY ---------- */
+.gallery{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+  gap:20px;
+}
 
-    .youtube-btn {
-      background: #FF0000;
-      color: #fff;
-    }
+.render-card{
+  background:var(--bg-soft);
+  border-radius:14px;
+  padding:10px;
+  cursor:pointer;
+  transition:transform .45s cubic-bezier(.22,.61,.36,1);
+}
 
-    .youtube-btn:hover {
-      background: #cc0000;
-    }
+.render-card:hover{
+  transform:scale(1.08);
+  border:1px solid var(--accent);
+}
 
-    .lang-btn {
-      background: #5555ff;
-      color: #fff;
-    }
+.render-card img{
+  width:100%;
+  border-radius:10px;
+}
 
-    .lang-btn:hover {
-      background: #3333cc;
-    }
+/* ---------- MODAL ---------- */
+.modal{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.7);
+  backdrop-filter:blur(6px);
+  display:none;
+  justify-content:center;
+  align-items:center;
+  z-index:10;
+}
 
-    .coming-soon {
-      color: var(--error);
-      font-weight: 700;
-      margin-top: 15px;
-      opacity: 0;
-      transition: opacity 0.3s ease;
-    }
+.modal.active{
+  display:flex;
+}
 
-    .coming-soon.show {
-      opacity: 1;
-    }
+.modal.closing{
+  animation:fadeOut .3s ease forwards;
+}
 
-    /* Animación para textos que cambian */
-    .fade-translate {
-      animation: fadeTranslate 0.4s;
-    }
+.modal-content{
+  position:relative;
+  z-index:20; /* arriba de YouTube icon */
+  animation:zoomIn .4s cubic-bezier(.22,.61,.36,1);
+}
 
-    @keyframes fadeTranslate {
-      0% { opacity: 0; transform: translateY(10px); }
-      100% { opacity: 1; transform: translateY(0); }
-    }
+.modal.closing .modal-content{
+  animation:zoomOut .35s cubic-bezier(.22,.61,.36,1);
+}
 
-    footer {
-      text-align: center;
-      padding: 40px;
-      color: var(--muted);
-      font-size: 0.9rem;
-      transition: all 0.3s ease;
-    }
+.modal img{
+  max-width:85vw;
+  max-height:85vh;
+  border-radius:14px;
+}
 
-    @media(max-width: 900px){
-      header { flex-direction: column; }
-      .hero-left, .hero-right { max-width: 100%; }
-      .buttons { justify-content: center; }
-    }
-  </style>
+.close{
+  position:absolute;
+  top:-45px;
+  right:0;
+  font-size:32px;
+  cursor:pointer;
+  color:white;
+}
+
+.details-btn{
+  position:absolute;
+  bottom:-45px;
+  right:0;
+  background:var(--accent);
+  color:white;
+}
+
+/* ---------- DETAILS PANEL ---------- */
+.details{
+  position:absolute;
+  left:50%;
+  bottom:70px;
+  transform:translateX(-50%) translateY(20px) scale(.96);
+
+  width:360px;
+  max-width:90%;
+  padding:18px;
+
+  border-radius:14px;
+  background:rgba(22,22,28,.75);
+  backdrop-filter:blur(10px);
+  color:var(--muted);
+
+  opacity:0;
+  pointer-events:none;
+
+  transition:
+    opacity .35s cubic-bezier(.22,.61,.36,1),
+    transform .35s cubic-bezier(.22,.61,.36,1);
+}
+
+.details.active{
+  opacity:1;
+  transform:translateX(-50%) translateY(0) scale(1);
+  pointer-events:auto;
+}
+
+/* ---------- ANIMATIONS ---------- */
+@keyframes zoomIn{
+  from{transform:scale(.85)}
+  to{transform:scale(1)}
+}
+
+@keyframes zoomOut{
+  from{transform:scale(1)}
+  to{transform:scale(.85)}
+}
+
+@keyframes fadeOut{
+  from{opacity:1}
+  to{opacity:0}
+}
+
+/* ---------- YOUTUBE BUTTON ---------- */
+#youtubeBtn{
+  position:fixed;
+  top:20px;
+  right:20px;
+  width:50px;
+  height:50px;
+  z-index:5; /* debajo del modal */
+  cursor:pointer;
+  transition:transform .3s ease;
+}
+
+#youtubeBtn img{
+  width:100%;
+  height:100%;
+}
+
+#youtubeBtn:hover{
+  transform:scale(1.15);
+}
+</style>
 </head>
+
 <body>
 
-<header>
-  <div class="hero-left">
-    <img class="profile-img" src="assets/images/ppicture.png" alt="NeoMP3 profile picture">
-    <h1 id="hero-title">Hello, I'm <span id="name-text">NeoMP3</span></h1>
-    <p id="description-text">
-      I'm a Minecraft Java developer specializing in events, custom entities, datapacks, and mod programming.
-    </p>
-  </div>
+<!-- BOTÓN YOUTUBE -->
+<a href="https://www.youtube.com/@NeoxMP3" target="_blank" id="youtubeBtn">
+  <img src="assets/images/youtubeICON.png" alt="YouTube">
+</a>
 
-  <div class="hero-right">
-    <div class="card">
-      <h3 id="about-title">About Me</h3>
-      <p id="about-text">
-        I'm NeoMP3, a programmer focused on creating events, mods, and custom content for Minecraft Java.
-        I love experimenting with datapacks, custom entities, and animations to enhance the gameplay.
-      </p>
+<main>
 
+<section id="homeView" class="view active">
+  <div class="home">
+    <img src="assets/images/ppicture.png">
+    <div>
+      <h1>Hello, I'm <span>NeoMP3</span></h1>
+      <p>Minecraft Java event developer focused on datapacks, mods and cinematic systems.</p>
       <div class="buttons">
-        <button class="toggle-projects" id="projects-btn">View Projects</button>
-        <button class="youtube-btn" id="youtube-btn">YouTube</button>
-        <button class="lang-btn" id="lang-btn">Español</button>
+        <button class="primary" onclick="openSkills()">Skills</button>
       </div>
-
-      <div class="coming-soon" id="comingSoon">Coming Soon</div>
     </div>
   </div>
-</header>
+</section>
 
-<footer id="footer-text">
-  © 2026 NeoMP3 — Minecraft Java Developer
-</footer>
+<section id="skillsView" class="view">
+  <div class="skill-card">
+    <img src="assets/images/portadarenders.png">
+    <div>
+      <h2>Renders</h2>
+      <p>Intermediate Blender renders focused on cinematic Minecraft visuals.</p>
+      <div class="buttons">
+        <button class="primary" onclick="openGallery()">View Renders</button>
+        <button class="secondary" onclick="goHome()">Back</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="galleryView" class="view">
+  <h2 style="margin-bottom:20px">Render Gallery</h2>
+  <div class="gallery">
+    <div class="render-card"><img src="assets/images/render1.png" onclick="openModal(0)"></div>
+    <div class="render-card"><img src="assets/images/render2.png" onclick="openModal(1)"></div>
+    <div class="render-card"><img src="assets/images/render3.png" onclick="openModal(2)"></div>
+  </div>
+  <div class="buttons" style="margin-top:25px">
+    <button class="secondary" onclick="openSkills()">Back</button>
+  </div>
+</section>
+
+</main>
+
+<div class="modal" id="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal()">×</span>
+    <img id="modalImg">
+    <button class="details-btn" onclick="toggleDetails()">Details</button>
+    <div class="details" id="detailsBox"></div>
+  </div>
+</div>
 
 <script>
-const toggleBtn = document.getElementById('projects-btn');
-const youtubeBtn = document.getElementById('youtube-btn');
-const comingSoon = document.getElementById('comingSoon');
-const langBtn = document.getElementById('lang-btn');
-
-const heroTitle = document.getElementById('hero-title');
-const descriptionText = document.getElementById('description-text');
-const aboutTitle = document.getElementById('about-title');
-const aboutText = document.getElementById('about-text');
-const footerText = document.getElementById('footer-text');
-
-let isSpanish = false;
-
-function showComingSoon() {
-  comingSoon.classList.add('show');
-  setTimeout(() => comingSoon.classList.remove('show'), 2000);
+const views={home:homeView,skills:skillsView,gallery:galleryView};
+function switchView(v){
+  Object.values(views).forEach(view=>view.classList.remove("active"));
+  views[v].classList.add("active");
 }
+function openSkills(){switchView("skills")}
+function openGallery(){switchView("gallery")}
+function goHome(){switchView("home")}
 
-// Animación para textos que cambian
-function animateText(element, newText) {
-  element.classList.remove('fade-translate');
-  void element.offsetWidth;
-  element.textContent = newText;
-  element.classList.add('fade-translate');
-}
-
-function animateHTML(element, newHTML) {
-  element.classList.remove('fade-translate');
-  void element.offsetWidth;
-  element.innerHTML = newHTML;
-  element.classList.add('fade-translate');
-}
-
-toggleBtn.addEventListener('click', showComingSoon);
-youtubeBtn.addEventListener('click', showComingSoon);
-
-// Cambio de idioma
-langBtn.addEventListener('click', () => {
-  if(!isSpanish){
-    // Español
-    animateHTML(heroTitle, "Hola, soy <span id='name-text'>NeoMP3</span>");
-    animateText(descriptionText, "Soy un desarrollador de eventos en Minecraft Java, especializado en entidades personalizadas, datapacks y mods.");
-    animateText(aboutTitle, "Sobre mí");
-    animateText(aboutText, "Soy NeoMP3, un programador enfocado en crear eventos, mods y contenido personalizado para Minecraft Java. Me gusta experimentar con datapacks, entidades personalizadas y animaciones para mejorar la experiencia de juego.");
-    animateText(footerText, "© 2026 NeoMP3 — Desarrollador de Minecraft Java");
-
-    // Actualizar mensaje "Proximamente" sin animación
-    comingSoon.textContent = "Próximamente";
-
-    langBtn.textContent = "English";
-    toggleBtn.textContent = "Ver Proyectos";
-    youtubeBtn.textContent = "YouTube";
-    isSpanish = true;
-  } else {
-    // Inglés
-    animateHTML(heroTitle, "Hello, I'm <span id='name-text'>NeoMP3</span>");
-    animateText(descriptionText, "I'm a Minecraft Java developer specializing in events, custom entities, datapacks, and mod programming.");
-    animateText(aboutTitle, "About Me");
-    animateText(aboutText, "I'm NeoMP3, a programmer focused on creating events, mods, and custom content for Minecraft Java. I love experimenting with datapacks, custom entities, and animations to enhance the gameplay.");
-    animateText(footerText, "© 2026 NeoMP3 — Minecraft Java Developer");
-
-    // Actualizar mensaje "Coming Soon" sin animación
-    comingSoon.textContent = "Coming Soon";
-
-    langBtn.textContent = "Español";
-    toggleBtn.textContent = "View Projects";
-    youtubeBtn.textContent = "YouTube";
-    isSpanish = false;
+const renderData=[
+  {
+    img:"assets/images/render1.png",
+    desc:"This render was created for my YouTube banner and represents the first serious render I made using my own Minecraft skin. It marked the beginning of my journey into Blender, focusing on lighting, camera composition and character presentation."
+  },
+  {
+    img:"assets/images/render2.png",
+    desc:"This render was an experimental attempt to replicate the visual style used in official Minecraft trailers. The goal was to study cinematic framing, dramatic lighting and atmosphere, pushing toward a more professional look."
+  },
+  {
+    img:"assets/images/render3.png",
+    desc:"This render showcases a custom model created for a VIP character inspired by a Squid Craft Games replica. The focus was on detail, proportions and premium presentation, combining modeling and rendering techniques."
   }
-});
+];
+
+const modal=document.getElementById("modal");
+const modalImg=document.getElementById("modalImg");
+const detailsBox=document.getElementById("detailsBox");
+let detailsOpen=false;
+
+function openModal(i){
+  modalImg.src=renderData[i].img;
+  detailsBox.textContent=renderData[i].desc;
+
+  detailsOpen=false;
+  detailsBox.classList.remove("active");
+
+  modal.classList.add("active");
+}
+
+function toggleDetails(){
+  detailsOpen=!detailsOpen;
+  detailsBox.classList.toggle("active", detailsOpen);
+}
+
+function closeModal(){
+  detailsBox.classList.remove("active");
+  detailsOpen=false;
+  modal.classList.add("closing");
+  setTimeout(()=>{
+    modal.classList.remove("active","closing");
+  },300);
+}
 </script>
 
 </body>
 </html>
-
-
